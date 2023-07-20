@@ -1,10 +1,8 @@
-import { config } from './config.js';
+import 'dotenv/config';
 import { fetchAccountId } from './lib/fetchAccountId.js';
-import dotenv from 'dotenv';
-dotenv.config();
-
 const main = async () => {
-  await fetchAccountId();
+  const data = await fetchAccountId();
+  console.debug(data);
 };
 
 main()

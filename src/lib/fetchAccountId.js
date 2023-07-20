@@ -1,14 +1,11 @@
-import dotenv from 'dotenv';
 import { constants } from '../constants/index.js';
 import { config } from '../config.js';
-dotenv.config();
 
 export const fetchAccountId = async () => {
-  console.log(config);
   const { email, jiraToken } = config;
   const { JIRA_API_BASE_URL } = constants;
   const url = `${JIRA_API_BASE_URL}/rest/api/3/myself`;
-  const token = btoa(`${email}:${jiraToken}}`);
+  const token = Buffer.from(`${email}:${jiraToken}`).toString('base64');
 
   const response = await fetch(url, {
     method: 'GET',
